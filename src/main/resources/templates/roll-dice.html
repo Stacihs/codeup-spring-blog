@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+</head>
+<body>
+<nav th:include="~{partials/partials_dice.html :: navbar}"></nav>
+<header th:include="~{partials/partials_dice.html :: header}"></header>
+
+<h2>Guess a number between 1 and 6:</h2>
+<form action="/dice-result" method="GET">
+    <label for="userGuess"></label>
+    <input type="number" name="userGuess" id="userGuess">
+</form>
+
+
+<footer th:include="~{partials/partials_dice.html :: footer}"></footer>
+</body>
+</html>
