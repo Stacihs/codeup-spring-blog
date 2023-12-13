@@ -1,9 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ResponseBody;
-//
+
 //@Controller
 //class HomeController {
 //    @GetMapping("/home")
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String welcome() {
         return "home";
     }

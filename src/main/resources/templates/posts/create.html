@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body>
+<header th:insert="~{partials/partials_post.html :: header}"></header>
+
+<form action="/posts/create" method="post">
+    <div>
+        <label class="form-label" for="title">Title:</label>
+        <input class="form-control" type="text" name="title" id="title"><br>
+    </div>
+    <div>
+        <label class="form-label" for="body">Description:</label>
+        <textarea class="form-control" name="body" id="body"></textarea>
+    </div>
+    <button>Submit</button>
+</form>
+
+</body>
+</html>
