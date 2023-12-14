@@ -5,7 +5,7 @@
     <title>All Posts</title>
 </head>
 <body>
-<header th:include="~{partials/partials_post.html :: header}"></header>
+<header th:insert="~{partials/partials_post.html :: header}"></header>
 <div th:each="post : ${posts}">
     <h2 th:text="${post.title}">The title</h2>
     <p th:text="${post.body}">The body</p>

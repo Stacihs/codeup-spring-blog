@@ -1,34 +1,30 @@
 package com.codeup.codeupspringblog.models;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 
-
-//@Getter
-//@Entity
-//@Table(name = "adlister_ads")
+@Entity
+@Table(name = "adlister_ads")
 public class Ad {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 70)
     private String title;
+
+    @Column(nullable = false, length = 100)
     private String description;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public void setId(long id) {
-        this.id = id;
-    }
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-//    @Column(nullable = false, length = 256)
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-//    @Column(nullable = false, length = 1024)
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Ad() {
-    }
 
     public Ad(String title, String description) {
         this.title = title;

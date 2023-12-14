@@ -5,8 +5,9 @@
     <title>My Post</title>
 </head>
 <body>
-<header th:include="~{partials/partials_post.html :: header}"></header>
-    <h1 th:text="${post.title}">My Title</h1>
-    <p th:text="${post.body}">My post</p>
+<header th:insert="~{partials/partials_post.html :: header}"></header>
+<h1 th:text="${post.title}">My Title</h1>
+<p th:text="${post.body}">My post</p>
+<p th:text="${post.user.email}">Email</p>
 </body>
 </html>
