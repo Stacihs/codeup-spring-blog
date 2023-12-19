@@ -1,8 +1,6 @@
 package com.codeup.codeupspringblog.models;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 import java.util.Set;
 
 @Getter
