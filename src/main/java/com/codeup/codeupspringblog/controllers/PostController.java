@@ -4,6 +4,8 @@ import com.codeup.codeupspringblog.dao.PostRepository;
 import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.services.AdEmailService;
+import com.codeup.codeupspringblog.services.PostEmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +19,8 @@ public class PostController {
 
     private PostRepository postDao;
     private UserRepository userDao;
+    private PostEmailService emailService;
 
-
-//    Post post1 = new Post("Post 1", "A bunch of words to add to first post");
-//    Post post2 = new Post("This is the Second Post", "Some more words to look at");
-//    List<Post> posts = new ArrayList<>(List.of(post1, post2));
-
-//    @GetMapping("/posts")
-//    @ResponseBody
-//    public String posts() {
-//        return "posts index page";
-//    }
-
-//    @GetMapping("/{id}")
-//    @ResponseBody
-//    public String post(@PathVariable String id) {
-//        id = "view an individual post";
-//        return id;
-//    }
 
     @GetMapping({"/{id}", "/{id}/"})
     public String showPost(@PathVariable long id, Model model) {
@@ -66,6 +52,14 @@ public class PostController {
         User user = userDao.findUserById(1L);
         post.setUser(user);
         postDao.save(post);
+        return "redirect:/posts";
+    }
+
+    @PostMapping({"/create", "/create/"})
+    public String createPost(@ModelAttribute Post post) {
+        post.setUser(userDao.findUserById(1L));
+        postDao.save(post);
+        emailService.prepareAndSend(post, post.getTitle(), post.getBody());
         return "redirect:/posts";
     }
 

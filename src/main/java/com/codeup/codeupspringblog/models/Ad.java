@@ -1,6 +1,10 @@
 package com.codeup.codeupspringblog.models;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @ToString
@@ -24,6 +28,15 @@ public class Ad {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "ads_categories",
+            joinColumns = @JoinColumn(name = "ad_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+//    best practice to use sets
+    private Set<Category> categories;
 
 
     public Ad(String title, String description) {

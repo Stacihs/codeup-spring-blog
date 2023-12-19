@@ -1,11 +1,13 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.dao.AdDao;
+import com.codeup.codeupspringblog.dao.CategoryDao;
 import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Ad;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.codeupspringblog.services.AdEmailService;
 
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class AdController {
 
     private AdDao adDao;
     private UserRepository userDao;
+    private CategoryDao categoryDao;
+    private AdEmailService emailService;
 
     Ad ad =  new Ad("Amazing new product!", "The everything thing will solve all your problems! It will clean your floors, wash your dishes, cook your dinner, and walk your dog!");
     Ad ad2 = new Ad("Latest flying car", "This new flying car will take off above traffic and save you time on your morning commute! No pilot license required!");
@@ -54,6 +58,8 @@ public class AdController {
         Ad ad = new Ad(title, description);
         ad.setUser(userDao.findUserById(1L));
         adDao.save(ad);
+//        send email to user that made ad
+        emailService.prepareAndSend(ad, "Ad created: " + ad.getTitle(), "An ad was created by you");
         return "redirect:/ads";
     }
 }
