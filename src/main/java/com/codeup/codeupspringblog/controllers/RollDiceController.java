@@ -2,27 +2,26 @@ package com.codeup.codeupspringblog.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@RequestMapping("/roll-dice")
 public class RollDiceController {
 
-    @GetMapping("/roll-dice")
+    @GetMapping({"", "/"})
     public String guessANumber() {
-        return "roll-dice";
+        return "/roll-dice";
     }
 
 
-    @GetMapping("/dice-result")
-    public String userGuess(@RequestParam(name = "userGuess") int userGuess, Model model, Integer randomNumber) {
-        randomNumber = (int)(Math.random() * 6) + 1;
-        model.addAttribute("userGuess", userGuess);
-        model.addAttribute(randomNumber);
-        return "dice-result";
+    @GetMapping("/{n}")
+    public String userGuess(@PathVariable int n, Model model) {
+        int diceRoll = (int) (Math.random() * 6) + 1;
+        model.addAttribute("n", n);
+        model.addAttribute("diceRoll", diceRoll);
+
+        return "/n";
     }
 
 }
