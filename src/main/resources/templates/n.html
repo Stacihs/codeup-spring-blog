@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Roll Dice</title>
-</head>
+<head th:insert="~{partials/partials_dice.html :: head}"></head>
+
 <body>
-<nav th:insert="~{partials/partials_dice.html :: navbar}"></nav>
+<nav th:insert="~{partials/partials_dice.html :: nav}"></nav>
+
 <header th:insert="~{partials/partials_dice.html :: header}"></header>
+
 <div th:if="${n == diceRoll}">
     <h2>You guessed correctly!</h2>
     <h3>Dice Roll: [[${diceRoll}]]</h3>

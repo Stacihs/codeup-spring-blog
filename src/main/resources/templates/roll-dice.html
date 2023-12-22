@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Roll Dice</title>
-</head>
+<head th:insert="~{partials/partials_dice.html :: head}"></head>
+
 <body>
-<nav th:insert="~{partials/partials_dice.html :: navbar}"></nav>
+<nav th:insert="~{partials/partials_dice.html :: nav}"></nav>
+
 <header th:insert="~{partials/partials_dice.html :: header}"></header>
 
 <h2>Guess a number from 1 to 6:</h2>
