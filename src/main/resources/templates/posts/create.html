@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Create Post</title>
+    <th:block th:replace="~{partials/partials_post.html :: head (title='Create New Post')}"></th:block>
 </head>
 <body>
 <header th:insert="~{partials/partials_post.html :: header}"></header>

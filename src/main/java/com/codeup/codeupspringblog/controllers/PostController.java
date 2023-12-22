@@ -1,5 +1,6 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.dao.AdDao;
 import com.codeup.codeupspringblog.dao.PostRepository;
 import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
@@ -19,7 +20,6 @@ public class PostController {
     private PostRepository postDao;
     private UserRepository userDao;
 //    private PostEmailService emailService;
-
 
 
 

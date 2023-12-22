@@ -4,10 +4,10 @@
     <th:block th:replace="~{partials/partials_ads.html :: head (title='All Ads')}"></th:block>
 </head>
 <body>
-    <header th:insert="~{partials/partials_ads.html :: header}"></header>
-    <div th:each="ad : ${ads}">
-        <h2 th:text="${ad.title}"></h2>
-        <p th:text="${ad.description}"></p>
-    </div>
+<header th:insert="~{partials/partials_ads.html :: header}"></header>
+<div th:each="ad : ${ads}">
+    <h2><a th:text="${ad.title}" th:href="@{|/ads/${ad.id}|}"></a></h2>
+    <p th:text="${ad.description}"></p>
+</div>
 </body>
 </html>
