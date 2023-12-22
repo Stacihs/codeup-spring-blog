@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Post</title>
+<head th:fragment="~{partials/partials_post.html :: head (title='My Post')}">
 </head>
 <body>
+<nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
 <header th:insert="~{partials/partials_post.html :: header}"></header>
 <h1 th:text="${post.title}">My Title</h1>
 <p th:text="${post.body}">My post</p>
 <p th:text="${post.user.email}">Email</p>
+
+<script th:insert="~{partials/partials_post.html :: script}"></script>
 </body>
 </html>

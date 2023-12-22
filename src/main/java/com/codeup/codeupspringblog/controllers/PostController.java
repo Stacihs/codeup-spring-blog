@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @Controller
-//@RequestMapping("/posts")
+@RequestMapping("/posts")
 public class PostController {
 
     private PostRepository postDao;
@@ -23,73 +23,46 @@ public class PostController {
 
 
 
-//    @GetMapping({"/", ""})
-//    public String viewAllPosts(Model model) {
-//        model.addAttribute("posts", postDao.findAll());
-//        return "/posts/index";
-//
-//    }
+    @GetMapping({"/", ""})
+    public String viewAllPosts(Model model) {
+        model.addAttribute("posts", postDao.findAll());
+        return "/posts/index";
+    }
 
-//    @GetMapping({"/{id}", "/{id}/"})
-//    public String showPost(@PathVariable long id, Model model) {
-//        Post post;
-//        if (postDao.findById(id).isPresent()) {
-//            post = postDao.findById(id).get();
-//        } else {
-//            post = new Post("No such post", "");
-//        }
-//        model.addAttribute("post", post);
-//        return "/posts/show";
-//    }
-//
-//
-//    @GetMapping({"/create", "/create/"})
-//    public String createPostForm() {
-//        return "/posts/create";
-//    }
-//
-//    @PostMapping({"/create", "/create/"})
-//    public String newPost(@RequestParam(name = "title") String title,
-//                          @RequestParam(name = "body") String body) {
-//        Post post = new Post(title, body);
-//        User user = userDao.findUserById(1L);
-//        post.setUser(user);
-//        postDao.save(post);
-//        return "redirect:/posts";
-//    }
+    @GetMapping({"/{id}", "/{id}/"})
+    public String showPost(@PathVariable long id, Model model) {
+        Post post;
+        if (postDao.findById(id).isPresent()) {
+            post = postDao.findById(id).get();
+        } else {
+            post = new Post("No such post", "");
+        }
+        model.addAttribute("post", post);
+        return "/posts/show";
+    }
+
+
+    @GetMapping({"/create", "/create/"})
+    public String createPostForm() {
+        return "/posts/create";
+    }
+
+    @PostMapping({"/create", "/create/"})
+    public String newPost(@RequestParam(name = "title") String title,
+                          @RequestParam(name = "body") String body) {
+        Post post = new Post(title, body);
+        User user = userDao.findUserById(1L);
+        post.setUser(user);
+        postDao.save(post);
+        return "redirect:/posts";
+    }
 
 //    @PostMapping({"/create", "/create/"})
 //    public String createPost(@ModelAttribute Post post) {
 //        post.setUser(userDao.findUserById(1L));
 //        postDao.save(post);
-//        emailService.prepareAndSend(post, post.getTitle(), post.getBody());
+////        emailService.prepareAndSend(post, post.getTitle(), post.getBody());
 //        return "redirect:/posts";
-//    }
-
-
-
-//    @GetMapping("/posts")
-//    @ResponseBody
-//    public String index() {
-//        return "posts index page";
-//    }
-//
-//    @GetMapping("/posts/{id}")
-//    @ResponseBody
-//    public String viewPost(@PathVariable String id) {
-//        return "view an individual post";
-//    }
-//
-//    @GetMapping("/posts/create")
-//    @ResponseBody
-//    public String viewForm() {
-//        return "view the form for creating a post";
-//    }
-//
-//    @PostMapping("/posts/create")
-//    @ResponseBody
-//    public String createPost() {
-//        return "create a new post";
 //    }
 
 }
