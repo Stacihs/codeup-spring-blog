@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:fragment="~{partials/partials_post.html :: head (title='My Post')}">
+<head>
+    <th:block th:replace="~{partials/partials_post.html :: head (title='My Post')}"></th:block>
 </head>
 <body>
 <nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
