@@ -11,5 +11,6 @@
     <h2>Here is the ad:</h2>
     <h3 th:text="${ad.title}"></h3>
     <p th:text="${ad.description}"></p>
+    <p>Posted by: [[${ad.user.username]]}</p>
 </body>
 </html>
