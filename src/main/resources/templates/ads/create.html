@@ -11,6 +11,13 @@
     <input type="text" name="title" id="title"><br>
     <label for="description">Description:</label>
     <textarea name="description" id="description"></textarea>
+    <fieldset>
+        <legend>Categories:</legend>
+        <div th:each="category : ${categories}">
+            <label th:for="${category.name}">[[${category.name}]]</label>
+            <input type="checkbox" name="category" th:id="${category.name}" th:value="${category.getName()}">
+        </div>
+    </fieldset>
     <button>Submit</button>
 </form>
 </body>

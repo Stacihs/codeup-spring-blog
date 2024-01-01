@@ -24,5 +24,4 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Ad> ads;
 
-
 }
