@@ -6,6 +6,7 @@ import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 //import com.codeup.codeupspringblog.services.PostEmailService;
+import com.codeup.codeupspringblog.services.PostEmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,7 @@ public class PostController {
 
     private PostRepository postDao;
     private UserRepository userDao;
-//    private PostEmailService emailService;
+    private PostEmailService emailService;
 
 
 
@@ -57,12 +58,24 @@ public class PostController {
         return "redirect:/posts";
     }
 
-//    @PostMapping({"/create", "/create/"})
-//    public String createPost(@ModelAttribute Post post) {
-//        post.setUser(userDao.findUserById(1L));
-//        postDao.save(post);
-////        emailService.prepareAndSend(post, post.getTitle(), post.getBody());
-//        return "redirect:/posts";
-//    }
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Post post;
+        if (postDao.findById(id).isPresent()) {
+            post = postDao.findById(id).get();
+        } else {
+            post = null;
+        }
+        model.addAttribute("post", post);
+        return "/posts/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editPost(@ModelAttribute Post post, @RequestParam long userId) {
+        post.setUser(userDao.findUserById(userId));
+        postDao.save(post);
+        emailService.prepareAndSend(post, post.getTitle(), post.getBody());
+        return "redirect:/posts";
+    }
 
 }
