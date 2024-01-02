@@ -27,6 +27,7 @@ public class Ad {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Setter
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "ads_categories",

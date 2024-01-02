@@ -5,16 +5,11 @@ import com.codeup.codeupspringblog.dao.CategoryRepository;
 import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Ad;
 import com.codeup.codeupspringblog.models.Category;
-import com.codeup.codeupspringblog.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -46,23 +41,35 @@ public class AdController {
 
     @GetMapping({"/create", "/create/"})
     public String showCreateAdForm(Model model) {
+        model.addAttribute("ad", new Ad());
         List<Category> categories = categoryDao.findAll();
-        categories.sort(Comparator.comparing(Category::getName));
         model.addAttribute("categories", categories);
         return "/ads/create";
     }
 
     @PostMapping({"/create", "/create/"})
-    public String handleAdSubmission(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description) {
-        User user = userDao.findUserById(1L);
-        Ad ad = new Ad(title, description, user);
-        Set<Category> categoryList = new Set<Category>();
-        for (String category : categories){
-            Category categoryFromDB = categoryDao.findCategoryByName(category);
-            categoryList.add(categoryFromDB);
+    public String handleAdSubmission(@ModelAttribute Ad ad) {
+        ad.setUser(userDao.findUserById(1L));
+        adDao.save(ad);
+        return "redirect:/ads";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Ad ad;
+        if (adDao.findById(id).isPresent()) {
+            ad = adDao.findById(id).get();
+        } else {
+            ad = null;
         }
-        ad.setCategories(categoryList);
-        adDao.save(new Ad(title, description));
+        model.addAttribute("ad", ad);
+        return "/ads/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editAd(@ModelAttribute Ad ad, @RequestParam long userId) {
+        ad.setUser(userDao.findUserById((userId)));
+        adDao.save(ad);
         return "redirect:/ads";
     }
 

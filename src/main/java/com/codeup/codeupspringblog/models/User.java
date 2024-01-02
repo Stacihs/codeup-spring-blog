@@ -34,10 +34,10 @@ public class User {
     private List<Post> posts;
 
 
-    public User(String username, String password, String email) {
+    public User(String username, String email, String password) {
         this.username = username;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
 
