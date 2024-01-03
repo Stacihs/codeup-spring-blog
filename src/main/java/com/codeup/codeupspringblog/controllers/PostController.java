@@ -5,7 +5,6 @@ import com.codeup.codeupspringblog.dao.PostRepository;
 import com.codeup.codeupspringblog.dao.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
-//import com.codeup.codeupspringblog.services.PostEmailService;
 import com.codeup.codeupspringblog.services.PostEmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
