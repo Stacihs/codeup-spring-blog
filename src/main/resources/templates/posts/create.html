@@ -6,7 +6,7 @@
 <body>
 <header th:insert="~{partials/partials_post.html :: header}"></header>
 
-<form action="/posts/create" method="post">
+<form th:action="@{/posts/create}" th:method="post">
     <div>
         <label class="form-label" for="title">Title:</label>
         <input class="form-control" type="text" name="title" id="title"><br>
