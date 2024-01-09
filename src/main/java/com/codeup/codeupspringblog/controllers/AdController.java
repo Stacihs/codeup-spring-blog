@@ -66,11 +66,14 @@ public class AdController {
         return "/ads/edit";
     }
 
+
     @PostMapping("/{id}/edit")
     public String editAd(@ModelAttribute Ad ad, @RequestParam long userId) {
         ad.setUser(userDao.findUserById((userId)));
         adDao.save(ad);
         return "redirect:/ads";
     }
+
+
 
 }
