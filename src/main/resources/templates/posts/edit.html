@@ -1,11 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Post</title>
+    <th:block th:replace="~{partials/partials_post.html :: head ('Edit Post')}"></th:block>
 </head>
 <body>
     <nav th:insert="~{partials/partials_post.html :: navbar}"></nav>

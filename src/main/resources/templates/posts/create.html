@@ -4,6 +4,7 @@
     <th:block th:replace="~{partials/partials_post.html :: head (title='Create New Post')}"></th:block>
 </head>
 <body>
+<nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
 <header th:insert="~{partials/partials_post.html :: header}"></header>
 
 <form th:action="@{/posts/create}" th:method="post">
