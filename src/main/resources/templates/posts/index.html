@@ -10,7 +10,7 @@
     <p>You have been logged out.</p>
 </div>
 <div th:each="post : ${posts}">
-    <h2 th:text="${post.title}">The title</h2>
+    <a th:href="@{|/posts/${post.id}|}"><h2 th:text="${post.title}">The title</h2></a>
     <p th:text="${post.body}">The body</p>
 </div>
 
