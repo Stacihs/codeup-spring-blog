@@ -43,7 +43,8 @@ public class PostController {
 
 
     @GetMapping({"/create", "/create/"})
-    public String createPostForm() {
+    public String createPostForm(Model model) {
+        model.addAttribute("post", new Post());
         return "/posts/create";
     }
 
@@ -71,7 +72,7 @@ public class PostController {
 
     @PostMapping("/{id}/edit")
     public String editPost(@ModelAttribute Post post, @RequestParam long userId) {
-        post.setUser(userDao.findUserById(userId));
+        post.setUser(userDao.findUserById((userId)));
         postDao.save(post);
         emailService.prepareAndSend(post, post.getTitle(), post.getBody());
         return "redirect:/posts";

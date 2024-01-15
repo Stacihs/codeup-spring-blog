@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <th:block th:replace="~{partials/partials_post.html :: head ('Edit Post')}"></th:block>
+    <th:block th:replace="~{partials/partials_post.html :: head (title='Edit Post')}"></th:block>
 </head>
 <body>
     <nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
@@ -16,6 +16,7 @@
             <button>Edit</button>
         </form>
     </div>
-<script th:insert="~{partials/partials_post.html :: script}"></script>
+    <script th:insert="~{partials/partials_post.html :: script}"></script>
+    <script th:insert="~{partials/partials_post.html :: logoutScript}"></script>
 </body>
 </html>

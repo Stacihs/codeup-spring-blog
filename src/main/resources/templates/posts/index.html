@@ -6,6 +6,9 @@
 <body>
 <nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
 <header th:insert="~{partials/partials_post.html :: header}"></header>
+<div th:if="${param.logout}">
+    <p>You have been logged out.</p>
+</div>
 <div th:each="post : ${posts}">
     <h2 th:text="${post.title}">The title</h2>
     <p th:text="${post.body}">The body</p>
@@ -13,5 +16,6 @@
 
 
 <script th:insert="~{partials/partials_post.html :: script}"></script>
+<script th:insert="~{partials/partials_post.html :: logoutScript}"></script>
 </body>
 </html>

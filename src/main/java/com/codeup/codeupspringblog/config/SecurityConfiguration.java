@@ -13,12 +13,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests
+        http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/ads/create", "/ads/*/edit", "/posts/create", "/posts/*/edit").authenticated()
-                        .requestMatchers("/", "/ads", "/ads/*", "/posts/*", "/posts", "/login").permitAll()
+                        .requestMatchers("/", "/ads", "/ads/*", "/posts", "/posts/*", "/login").permitAll()
                         .requestMatchers("/js/*", "/css/*", "/img/*").permitAll())
                 .formLogin(login -> login.loginPage("/login").defaultSuccessUrl("/posts"))
-                .logout(withDefaults());
+                .logout(logout -> logout.logoutSuccessUrl("/posts?logout"));
         return http.build();
     }
 
