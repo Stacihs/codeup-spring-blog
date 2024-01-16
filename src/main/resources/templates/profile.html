@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Profile</title>
+</head>
+<body>
+<form th:action="@{/templates/profile.html}" th:method="post">
+    <div sec:authorize="isAuthenticated()">
+        <p>User ID: <span sec:authentication="principal.id"></span>
+        <p>Welcome, <span sec:authentication="principal.username"></span></p>
+    </div>
+    <fieldset>
+        <legend>Change Your Email</legend>
+        <p>Current Email: <span sec:authentication="principal.email"></span></p>
+        <label for="email">New Email:</label>
+        <input type="text" name="email" id="email"><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+</body>
+</html>
