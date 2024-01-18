@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class BcryptTest {
 
     public static void main(String[] args) {
-        String password = "password";
+        String password = "";
         String salt1 = BCrypt.gensalt();
         String salt2 = BCrypt.gensalt();
         System.out.println(salt1);
