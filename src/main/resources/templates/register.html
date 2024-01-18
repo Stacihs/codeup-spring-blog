@@ -4,6 +4,7 @@
     <th:block th:replace="~{partials/partials_post.html :: head (title = 'Register a Posts Account')}"></th:block>
 </head>
 <body>
+<nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
     <h1>Create an Account</h1>
     <form th:action="@{/register}" th:method="post" th:object="${user}">
         <label for="username">Username:</label>
@@ -17,5 +18,7 @@
         <br><br>
         <input type="submit" value="Sign Me Up!">
     </form>
+<script th:insert="~{partials/partials_post.html :: script}"></script>
+<script th:insert="~{partials/partials_post.html :: logoutScript}"></script>
 </body>
 </html>
