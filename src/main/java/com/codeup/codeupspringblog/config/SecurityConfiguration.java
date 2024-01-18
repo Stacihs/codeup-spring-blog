@@ -15,7 +15,7 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/ads/create", "/ads/*/edit", "/posts/create", "/posts/*/edit", "/profile").authenticated()
-                        .requestMatchers("/", "/ads", "/ads/*", "/posts", "/posts/*", "/login").permitAll()
+                        .requestMatchers("/", "/ads", "/ads/*", "/posts", "/posts/*", "/login", "/logout", "/register").permitAll()
                         .requestMatchers("/js/*", "/css/*", "/img/*").permitAll())
                 .formLogin(login -> login.loginPage("/login").defaultSuccessUrl("/posts"))
                 .logout(logout -> logout.logoutSuccessUrl("/posts?logout"));

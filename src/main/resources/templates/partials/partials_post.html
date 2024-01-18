@@ -25,6 +25,7 @@
                 <a class="nav-link active" aria-current="page" href="/posts">All Posts</a>
                 <a class="nav-link" href="/posts/create">Create A Post</a>
                 <a class="nav-link" href="/profile">User Profile</a>
+                <a class="nav-link" href="/register">Register Account</a>
                 <a class="nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
                 <a class="nav-link" sec:authorize="isAuthenticated()" id="logOutLink" href="#">Logout</a>
                 <form style="display: none" id="logOutForm" th:action="@{/logout}" th:method="post">

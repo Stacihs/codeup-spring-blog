@@ -1,14 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Your Profile</title>
+   <th:block th:replace="~{partials/partials_post.html :: head (title ='Your Profile')}"></th:block>
 </head>
 <body>
-<form th:action="@{/templates/profile.html}" th:method="post">
+<nav th:insert="~{partials/partials_post.html :: navbar}"></nav>
+<form th:action="@{/profile.html}" th:method="post">
     <div sec:authorize="isAuthenticated()">
         <p>User ID: <span sec:authentication="principal.id"></span>
         <p>Welcome, <span sec:authentication="principal.username"></span></p>
@@ -21,6 +18,7 @@
         <input type="submit" value="Submit">
     </fieldset>
 </form>
-
+<script th:insert="~{partials/partials_post.html :: script}"></script>
+<script th:insert="~{partials/partials_post.html :: logoutScript}"></script>
 </body>
 </html>
